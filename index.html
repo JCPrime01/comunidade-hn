@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Comunidade do Jota</title>
+
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2668880693491070');
+    fbq('track', 'PageView');
+    </script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Imagem de Fundo */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1000'); 
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        /* Overlay Escuro */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 85%);
+            z-index: 2;
+        }
+
+        /* Container de Conteúdo */
+        .container {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100vh;
+            padding-bottom: 50px;
+            text-align: center;
+        }
+
+        .headline {
+            background-color: #ff0000;
+            padding: 10px 15px;
+            font-weight: 900;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            display: inline-block;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #eeeeee;
+            margin-bottom: 30px;
+            padding: 0 25px;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* Botão Principal */
+        .btn {
+            background-color: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            width: 88%;
+            max-width: 380px;
+            padding: 20px 0;
+            font-weight: 800;
+            font-size: 20px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .social-proof {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .copy {
+            margin-top: 20px;
+            font-size: 10px;
+            color: #555;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
+
+    <div class="container">
+        <div class="headline">
+            ACESSO LIBERADO A MINHA<br>COMUNIDADE GRATUITO
+        </div>
+
+        <p class="description">
+            Entre agora na comunidade que mais entrega<br>
+            Odds altas, análises, organização e<br>
+            responsabilidades.
+        </p>
+
+        <a href="COLOQUE_SEU_LINK_AQUI" class="btn" id="btn-lead">
+            ENTRAR AGORA
+        </a>
+
+        <div class="social-proof">
+            Pessoas reais com resultados reais
+        </div>
+
+        <div class="copy">
+            COPYRIGHT © 2026 - TODOS OS DIREITOS RESERVADOS
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btn-lead').addEventListener('click', function(e) {
+            // Pega o link do botão
+            var destinationUrl = this.getAttribute('href');
+            
+            // Verifica se o link foi preenchido
+            if(destinationUrl === "COLOQUE_SEU_LINK_AQUI" || destinationUrl === "#") {
+                alert("Por favor, configure o link do seu grupo no código!");
+                e.preventDefault();
+                return;
+            }
+
+            // 1. Impede a saída imediata
+            e.preventDefault();
+
+            // 2. Dispara o evento de Lead no Pixel
+            fbq('track', 'Lead');
+            console.log("Pixel de Lead disparado com sucesso.");
+
+            // 3. Redireciona após 300ms (tempo para o pixel processar)
+            setTimeout(function(){
+                window.location.href = destinationUrl;
+            }, 300);
+        });
+    </script>
+
+</body>
+</html>
