@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Comunidade do Jota</title>
+    <title>Comunidade do Jota - Acesso Gratuito</title>
 
     <script>
     !function(f,b,e,v,n,t,s)
@@ -15,46 +15,61 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '2668880693491070');
+        fbq('init', '961619428689288');
+        fbq('init', '1346675563469865');
     fbq('track', 'PageView');
     </script>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: white;
-            overflow: hidden;
+        :root {
+            --primary-red: #ff0000;
+            --dark-bg: #000000;
         }
 
-        /* Imagem de Fundo */
-        .bg-image {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            color: white;
+            overflow: hidden; /* Mantém o foco no conteúdo central */
+        }
+
+        /* Camada da Foto de Fundo */
+        .background-layer {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1000'); 
+            background-image: url('jp-direto.jpg'); /* Verifique o nome do seu arquivo */
             background-size: cover;
-            background-position: center;
+            background-position: center top;
             z-index: 1;
         }
 
-        /* Overlay Escuro */
-        .overlay {
+        /* Gradiente de sobreposição idêntico ao original */
+        .vignette {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 85%);
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,0.1) 0%, 
+                rgba(0,0,0,0.4) 50%, 
+                rgba(0,0,0,0.95) 90%);
             z-index: 2;
         }
 
-        /* Container de Conteúdo */
-        .container {
+        /* Container Principal */
+        .main-content {
             position: relative;
             z-index: 3;
             display: flex;
@@ -62,118 +77,152 @@
             justify-content: flex-end;
             align-items: center;
             height: 100vh;
-            padding-bottom: 50px;
+            padding: 0 20px 40px 20px;
             text-align: center;
         }
 
-        .headline {
-            background-color: #ff0000;
+        /* Headline em Bloco Vermelho */
+        .headline-wrapper {
+            background-color: var(--primary-red);
             padding: 10px 15px;
-            font-weight: 900;
-            font-size: 24px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            line-height: 1.1;
-            display: inline-block;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .description {
-            font-size: 16px;
-            color: #eeeeee;
-            margin-bottom: 30px;
-            padding: 0 25px;
-            line-height: 1.5;
+        .headline-text {
+            font-size: 26px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: #fff;
+        }
+
+        /* Subtexto */
+        .sub-description {
+            font-size: 15px;
+            color: #d1d1d1;
+            margin-bottom: 35px;
+            line-height: 1.4;
+            max-width: 320px;
             font-weight: 400;
         }
 
-        /* Botão Principal */
-        .btn {
-            background-color: #ff0000;
+        /* Botão Estilo "Entrar Agora" com animação */
+        .cta-button {
+            position: relative;
+            background-color: var(--primary-red);
             color: #fff;
             text-decoration: none;
-            width: 88%;
-            max-width: 380px;
+            width: 100%;
+            max-width: 340px;
             padding: 20px 0;
-            font-weight: 800;
-            font-size: 20px;
-            border-radius: 6px;
+            font-weight: 900;
+            font-size: 22px;
+            border-radius: 4px;
             text-transform: uppercase;
-            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
-            border: none;
-            cursor: pointer;
-            transition: transform 0.1s ease;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+            overflow: hidden;
+            transition: transform 0.2s;
         }
 
-        .btn:active {
-            transform: scale(0.96);
+        .cta-button:active {
+            transform: scale(0.97);
         }
 
-        .social-proof {
-            margin-top: 25px;
+        /* Efeito de brilho que passa pelo botão */
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+            transition: none;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -60%; }
+            20% { left: 120%; }
+            100% { left: 120%; }
+        }
+
+        /* Prova Social e Rodapé */
+        .footer-box {
+            margin-top: 30px;
+        }
+
+        .social-text {
             font-size: 13px;
-            color: #999;
+            color: #888;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        .copy {
-            margin-top: 20px;
+        .copyright-text {
             font-size: 10px;
-            color: #555;
+            color: #444;
+            text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* Ajuste para telas pequenas */
+        @media (max-height: 600px) {
+            .headline-text { font-size: 20px; }
+            .sub-description { font-size: 13px; margin-bottom: 20px; }
+            .cta-button { padding: 15px 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-image"></div>
-    <div class="overlay"></div>
+    <div class="background-layer"></div>
+    <div class="vignette"></div>
 
-    <div class="container">
-        <div class="headline">
-            ACESSO LIBERADO A MINHA<br>COMUNIDADE GRATUITO
+    <div class="main-content">
+        
+        <div class="headline-wrapper">
+            <h1 class="headline-text">
+                ACESSO LIBERADO A MINHA<br>COMUNIDADE GRATUITO
+            </h1>
         </div>
 
-        <p class="description">
-            Entre agora na comunidade que mais entrega<br>
-            Odds altas, análises, organização e<br>
-            responsabilidades.
+        <p class="sub-description">
+            Entre agora na comunidade que mais entrega <b>Odds altas</b>, análises, organização e responsabilidades.
         </p>
 
-        <a href="COLOQUE_SEU_LINK_AQUI" class="btn" id="btn-lead">
+        <a href="SEU_LINK_AQUI" class="cta-button" id="pixel-trigger">
             ENTRAR AGORA
         </a>
 
-        <div class="social-proof">
-            Pessoas reais com resultados reais
+        <div class="footer-box">
+            <span class="social-text">🔥 Pessoas reais com resultados reais</span>
+            <p class="copyright-text">Copyright © 2026 - Todos os direitos reservados</p>
         </div>
 
-        <div class="copy">
-            COPYRIGHT © 2026 - TODOS OS DIREITOS RESERVADOS
-        </div>
     </div>
 
     <script>
-        document.getElementById('btn-lead').addEventListener('click', function(e) {
-            // Pega o link do botão
-            var destinationUrl = this.getAttribute('href');
+        document.getElementById('pixel-trigger').addEventListener('click', function(e) {
+            var url = this.getAttribute('href');
             
-            // Verifica se o link foi preenchido
-            if(destinationUrl === "COLOQUE_SEU_LINK_AQUI" || destinationUrl === "#") {
-                alert("Por favor, configure o link do seu grupo no código!");
+            if(url === "SEU_LINK_AQUI" || url === "") {
+                alert("Opa! Você esqueceu de colocar o link do seu grupo no código.");
                 e.preventDefault();
                 return;
             }
 
-            // 1. Impede a saída imediata
             e.preventDefault();
-
-            // 2. Dispara o evento de Lead no Pixel
             fbq('track', 'Lead');
-            console.log("Pixel de Lead disparado com sucesso.");
-
-            // 3. Redireciona após 300ms (tempo para o pixel processar)
+            fbq('track', 'Contact');
+            fbq('track', 'Purchase');
+            
             setTimeout(function(){
-                window.location.href = destinationUrl;
-            }, 300);
+                window.location.href = url;
+            }, 350);
         });
     </script>
 
